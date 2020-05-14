@@ -23,8 +23,6 @@ const Timer = (props) => {
   const [gameStarted, setGameStarted] = useState(false);
   const secRef = useRef(null);
 
-  const toggle = () => setIsActive(!isActive);
-
   useEffect(() => {
     gsap.fromTo(
       secRef.current,

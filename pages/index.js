@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
   body{
       margin: 0;
-      background: url("/images/tic-tac-toe.png");
+      background: url("/images/bg.png");
       font-family: Helvetica, sans-serif;
       overflow: hidden;
   }
@@ -19,10 +19,26 @@ const GlobalStyle = createGlobalStyle`
     backface-visibility: hidden;
     
   }
+  p{
+    margin: 10px 0;
+    &:first-of-type{
+      font-size:1.2rem;
+    }
+  }
+  sup{
+    color: black;
+    font-style: italic;
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
   .front{
     display: flex;
   }
+  .card{
+    transform: rotateY(-180deg);
 
+  }
   .cardFace {
   position: absolute;
   overflow: hidden;
@@ -32,14 +48,40 @@ const GlobalStyle = createGlobalStyle`
   display:flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid black;
+  border: 1px solid black;
+  box-sizing: border-box;
+
   &.front{
     background: #A3333D;
   }
   &.back{
-    background: #291F1E;
+    /* background: #3ca333; */
+    background: #2f6e2a;
+  }
+  &.front--info {
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    background: #291F1E; 
+    transform: rotateY(-180deg);
+    }
+  &.back--info {
+    background: #432624;
+    border: 2px solid black;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 15px 5px;
+  }
+  &.front--play {
+    background: #477998;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+  }
+  &.back--play {
+    background: #479866;
+    border: 2px solid black;
   }
 }
+
 `;
 
 export default function MyPage() {

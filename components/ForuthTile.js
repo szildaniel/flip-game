@@ -1,17 +1,17 @@
-import { StyledGameTile } from "../styles/Styled.Tiles";
-
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { gsap, Back } from "gsap";
+import { SpanLetters } from '../styles/Styled.SpanLetters';
 
 const CardWrapper = styled.div`
-  width: 100%;
+  width: 200px;
   height: 200px;
   cursor: pointer;
   position: relative;
+  margin: 10px;
 `;
 
-const GameTile = () => {
+const FourthTile = () => {
   let [divSide, setDivSide] = useState("front");
 
   const cardWrapperRef = useRef(null);
@@ -53,11 +53,11 @@ const GameTile = () => {
     <>
       <CardWrapper ref={cardWrapperRef}>
         <div className="card" ref={cardRef} onClick={changeSide}>
-          <div className="cardFace front" ref={frontRef}>
-            FRONT
+          <div className="cardFace front--play" ref={frontRef}>
+            <SpanLetters>P</SpanLetters>
           </div>
-          <div className="cardFace back" ref={backRef}>
-            BACK
+          <div className="cardFace back--play" ref={backRef}>
+            Play
           </div>
         </div>
       </CardWrapper>
@@ -65,4 +65,4 @@ const GameTile = () => {
   );
 };
 
-export default GameTile;
+export default FourthTile;

@@ -2,15 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { gsap, Back } from "gsap";
-
 import { IntroContainer } from "../styles/Styled.IntroContainer";
+import { SpanLetters } from "../styles/Styled.SpanLetters";
+import ThirdTile from "../components/ThirdTile";
+// import FourthTile from '../components/ForuthTile';
+
 import {
   FirstTile,
   SecondTile,
-  ThirdTile,
   FourthTile,
   FlippedDiv,
-} from "../styles/Style.Tiles";
+} from "../styles/Styled.Tiles";
 
 const CardContainer = styled.div`
   position: relative;
@@ -23,10 +25,10 @@ const Row = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Letter = styled.span`
+
+const PlayInfo = styled.span`
   display: block;
-  font-size: 40px;
-  text-transform: uppercase;
+  color: #656363;
 `;
 
 export default function Intro() {
@@ -38,7 +40,6 @@ export default function Intro() {
   const rotationDiv = useRef(null);
 
   const handleClick = () => {
-
     if (divSide === "front") {
       gsap.to(rotationDiv.current.children[0], 1.2, {
         rotateY: 180,
@@ -65,42 +66,39 @@ export default function Intro() {
     });
   });
 
-
   return (
     <IntroContainer>
+      <PlayInfo>Click P to start game.</PlayInfo>
       <CardContainer ref={parentRef}>
         <Row ref={rotationDiv}>
           <div className="introCard front" ref={frontRef}>
             <FirstTile onClick={handleClick}>
-              <Letter>F</Letter>
+              <SpanLetters>F</SpanLetters>
             </FirstTile>
             <SecondTile onClick={handleClick}>
-              <Letter>L</Letter>
+              <SpanLetters>L</SpanLetters>
             </SecondTile>
           </div>
           <div className="introCard back" ref={backRef} onClick={handleClick}>
             <FlippedDiv>
-              <div>
-                Click{" "}
-                <Link href="/game">
-                  <a>here</a> 
-                </Link>
-                  {" "}to start game.
-              </div>
-              <div>1. Last Game Score: 6 hits</div>
-              <div>2. Best Score: 23 sec</div>
+              <p>RESULTS: 0 <sup>won</sup>, 0 <sup>lost</sup> 0 <sup>abandoned</sup> </p>
+              <p>1. Best Time: --</p>
+              <p>2. Last result: win</p>
             </FlippedDiv>
           </div>
         </Row>
       </CardContainer>
 
       <Row>
-        <ThirdTile>
-          <Letter>I</Letter>
-        </ThirdTile>
-        <FourthTile>
-          <Letter>P</Letter>
-        </FourthTile>
+        <ThirdTile />
+
+        <Link href="/game">
+          <a>
+            <FourthTile>
+              <SpanLetters>P</SpanLetters>
+            </FourthTile>
+          </a>
+        </Link>
       </Row>
     </IntroContainer>
   );
