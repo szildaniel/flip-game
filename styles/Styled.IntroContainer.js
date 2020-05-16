@@ -5,8 +5,8 @@ export const IntroContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 60vw;
-  height: 50vh;
+  width: 70vw;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

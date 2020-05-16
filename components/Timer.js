@@ -4,18 +4,22 @@ import { gsap, Back } from "gsap";
 
 const StyledH2 = styled.h2`
   text-align: center;
-  margin-top: 3rem;
   font-family: 'Indie Flower', cursive;
   color: #291F1E;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Seconds = styled.span`
   font-family: 'Indie Flower', cursive;
   display: block;
-  font-size: 2rem;
+  font-size: 5rem;
   font-weight: bolder;
-  color: #291F1E;
   text-align: center;
+  color: #A3333D;
+  text-shadow: 2px 2px 2px black;
 `;
 const Timer = (props) => {
   const [sec, setSec] = useState(5);
@@ -28,7 +32,7 @@ const Timer = (props) => {
       secRef.current,
       0.5,
       {
-        scale: 0.7,
+        scale: 0.6,
         opacity: 0.93,
       },
       {
@@ -61,9 +65,8 @@ const Timer = (props) => {
         <StyledH2>START</StyledH2>
       ) : (
         <StyledH2>
-          Be ready! Your game gonna start after:
           <Seconds ref={secRef}>
-            {sec} {sec === 1 || sec == 0 ? "second" : "seconds"}
+            {sec}s
           </Seconds>
         </StyledH2>
       )} 

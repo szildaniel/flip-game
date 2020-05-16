@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Tile = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,8 +36,8 @@ export const FourthTile = styled(Tile)`
 `;
 
 export const FlippedDiv = styled.div`
-  width: 420px;
-  height: 200px;
+  width: 520px;
+  height: 0px;
   margin: 10px;
   border: 2px solid black;
   display: flex;

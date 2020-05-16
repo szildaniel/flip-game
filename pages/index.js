@@ -59,17 +59,28 @@ const GlobalStyle = createGlobalStyle`
     background: #2f6e2a;
   }
   &.front--info {
+    height: 250px;
+    width: 250px;
     border-top: 2px solid black;
     border-right: 2px solid black;
     background: #291F1E; 
     transform: rotateY(-180deg);
+    margin:10px;
     }
   &.back--info {
+    width: 540px;
+    height: 250px;
     background: #432624;
     border: 2px solid black;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 15px 5px;
+    align-items: flex-start;
+    padding: 2px 12px;
+    margin: 10px;
+    p{
+      padding: 0.3rem 0;
+      margin: 0;
+    }
   }
   &.front--play {
     background: #477998;
@@ -81,7 +92,14 @@ const GlobalStyle = createGlobalStyle`
     border: 2px solid black;
   }
 }
-
+.second-row{
+  height: 250px;
+  width: 520px;
+  box-sizing: border-box;
+  & a{
+    width: 250px;
+  }
+}
 `;
 
 export default function MyPage() {

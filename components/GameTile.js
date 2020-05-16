@@ -11,7 +11,7 @@ const CardWrapper = styled.div`
   position: relative;
 `;
 
-const GameTile = () => {
+const GameTile = (props) => {
   let [divSide, setDivSide] = useState("front");
 
   const cardWrapperRef = useRef(null);
@@ -29,6 +29,21 @@ const GameTile = () => {
     }
   });
 
+
+  useEffect( () => {
+    let delay;
+    
+    if(props.uncover >= 2){
+       delay = setTimeout( () => {
+        setDivSide("front")
+    
+
+       }, 400);
+    }
+    return () => clearTimeout(delay)
+  }, [props.uncover])
+
+  
   const changeSide = () => {
     if (divSide === "front") {
       setDivSide("back");
@@ -45,15 +60,15 @@ const GameTile = () => {
   });
   useEffect(() => {
     if (divSide === "front") {
-      gsap.to(cardRef.current, .9, { rotationY: 180, ease: Back.easeOut });
+      gsap.to(cardRef.current, .6, { rotationY: 180, ease: Back.easeOut });
     } else if (divSide === "back")
-      gsap.to(cardRef.current, .9, { rotationY: 0, ease: Back.easeOut });
+      gsap.to(cardRef.current, .6, { rotationY: 0, ease: Back.easeOut });
   }, [divSide]);
   return (
     <>
       <CardWrapper ref={cardWrapperRef}>
         <div className="card" ref={cardRef} onClick={changeSide}>
-          <div className="cardFace front" ref={frontRef}>
+          <div className="cardFace front" data-index={props.index} ref={frontRef}>
             FRONT
           </div>
           <div className="cardFace back" ref={backRef}>
