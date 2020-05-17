@@ -1,6 +1,16 @@
 import Intro from "../components/Intro";
 import { createGlobalStyle } from "styled-components";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faBomb, faCrown,
+  faEye, faFish, 
+  faFire, faHiking, 
+  faFighterJet, faSpider,
+  faStar, faHatWizard } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fab, faFighterJet, faSpider, faStar, faHiking, faHatWizard, faBomb, faCrown, faEye, faFish, faFire);
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
   body{
@@ -68,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
     margin:10px;
     }
   &.back--info {
-    width: 540px;
+    width: 520px;
     height: 250px;
     background: #432624;
     border: 2px solid black;
@@ -76,7 +86,8 @@ const GlobalStyle = createGlobalStyle`
     justify-content: flex-start;
     align-items: flex-start;
     padding: 2px 12px;
-    margin: 10px;
+    transform: translateX(-10px);
+    margin-top: 10px;
     p{
       padding: 0.3rem 0;
       margin: 0;

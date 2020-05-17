@@ -37,7 +37,7 @@ export const FourthTile = styled(Tile)`
 
 export const FlippedDiv = styled.div`
   width: 520px;
-  height: 0px;
+  height: 250px;
   margin: 10px;
   border: 2px solid black;
   display: flex;
