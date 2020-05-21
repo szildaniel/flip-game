@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CardWrapper = styled.div`
   width: 100%;
   height: 200px;
-  cursor: ${props => props.isClickable ? "pointer" : "arrow"};
+  cursor: ${(props) => (props.isClickable ? "pointer" : "arrow")};
   position: relative;
 `;
 
@@ -31,7 +31,7 @@ const GameTile = (props) => {
   });
 
   const changeSide = () => {
-    if (divSide === "front") {
+    if (divSide === "front" && isClickable) {
       setDivSide("back");
     } else if (divSide === "back" && isClickable) {
       setDivSide("front");
@@ -46,7 +46,7 @@ const GameTile = (props) => {
   }, [divSide]);
 
   // if card is not matching
-  
+
   useEffect(() => {
     let delay;
     if (divSide === "back" && isClickable) {
@@ -59,11 +59,17 @@ const GameTile = (props) => {
   // if card is matching
 
   useEffect(() => {
+    if (props.cardMatching > 0 && divSide === "back" && isClickable) {
+      gsap.fromTo(
+        backRef.current,
+        { autoAlpha: 0.95, scale: 0.9 },
+        { autoAlpha: 1, scale: 1, ease: Back.easeInOut, duration: 0.8 }
+      );
+    }
     if (props.cardMatching > 0 && divSide === "back") {
       setIsClickable(false);
     }
   }, [props.cardMatching]);
-
 
   useEffect(() => {
     gsap.set(cardWrapperRef.current, { perspective: 800 });
@@ -73,6 +79,13 @@ const GameTile = (props) => {
       backfaceVisibility: "hidden",
     });
   });
+  useEffect(() => {
+    if (props.isPaused) {
+      setIsClickable(false);
+    }
+    else setIsClickable(true);
+  }, [props.isPaused]);
+
 
   useEffect(() => {
     if (divSide === "front") {
@@ -90,7 +103,11 @@ const GameTile = (props) => {
             ref={frontRef}
           ></div>
           <div className="cardFace back" ref={backRef}>
-            <FontAwesomeIcon size="6x" icon={props.mySymbol.value}  ref={iconRef}/>
+            <FontAwesomeIcon
+              size="6x"
+              icon={props.mySymbol.value}
+              ref={iconRef}
+            />
           </div>
         </div>
       </CardWrapper>
