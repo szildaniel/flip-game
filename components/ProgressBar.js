@@ -15,6 +15,7 @@ const Filler = styled.div`
   background: #a3333d;
 `;
 
+
 export const ProgressBar = (props) => {
   const fillerRef = useRef(null);
   const [tl] = useState(new TimelineLite());

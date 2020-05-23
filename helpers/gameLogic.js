@@ -1,33 +1,45 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { gsap } from "gsap";
-// count Uncover Clicks
+import { handleKeyboard } from "../helpers/keyboard";
 
 export function useGameLogic(gridRef) {
+  const [isPaused, setIsPaused] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
   const [uncover, setUncover] = useState(0);
-  const [comparingCards, setComparingCards] = useState([]);
+  const [cardsToCompare, setCardsToCompare] = useState([]);
 
   const [cardsMatching, setCardsMatching] = useState(0);
   const [cardsNotMatching, setCardsNotMatching] = useState(0);
 
+  const toggleGame = () => {
+    setIsActive(!isActive);
+  };
+
+  const togglePause = () => {
+    setIsPaused((isPaused) => !isPaused);
+  };
+
   const resetCards = () => {
-    setComparingCards([]);
+    setCardsToCompare([]);
   };
 
   const countUncoveredCards = () => {
-    setUncover(uncover + 1);
+    if (!isPaused) {
+      setUncover(uncover + 1);
+    }
   };
-
   const addUncoveredCardToCompare = (card) => {
-    setComparingCards([...comparingCards, card]);
-  };
-
+    setCardsToCompare([...cardsToCompare, card])
+  }
   const compareCards = (card1, card2) => {
     const sameCards = card1 === card2;
     const differentCards = card1 !== card2;
 
     if (sameCards) {
       setCardsMatching((cardsMatching) => cardsMatching + 1);
-    } else if (differentCards) {
+    } 
+    else if (differentCards) {
       setCardsNotMatching((cardsNotMatching) => cardsNotMatching + 1);
     }
 
@@ -36,10 +48,10 @@ export function useGameLogic(gridRef) {
 
   // if user uncover 2 cards compare cards
   useEffect(() => {
-    if (comparingCards.length === 2) {
-      compareCards(comparingCards[0], comparingCards[1]);
+    if (cardsToCompare.length === 2) {
+      compareCards(cardsToCompare[0], cardsToCompare[1]);
     }
-  }, [comparingCards]);
+  }, [cardsToCompare]);
 
   // if user uncover 2 cards, reset counter
   useEffect(() => {
@@ -50,7 +62,7 @@ export function useGameLogic(gridRef) {
     return () => clearTimeout(delay);
   }, [uncover]);
 
-  // at the begginig flash in game grid
+  // flash game grid after 5s
   useEffect(() => {
     gsap.fromTo(
       gridRef.current,
@@ -59,11 +71,21 @@ export function useGameLogic(gridRef) {
       { autoAlpha: 1, delay: 1 }
     );
   }, []);
-  return [
-    comparingCards,
+
+  useEffect(() => {
+    addEventListener("keydown", (e) => handleKeyboard(e, togglePause));
+    return () =>
+      removeEventListener("keydown", (e) => handleKeyboard(e, togglePause));
+  }, []);
+  return {
+    cardsToCompare,
+    setCardsToCompare,
     cardsMatching,
     cardsNotMatching,
-    addUncoveredCardToCompare,
     countUncoveredCards,
-  ];
+    isPaused,
+    isActive,
+    toggleGame, 
+    addUncoveredCardToCompare
+  };
 }

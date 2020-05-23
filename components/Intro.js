@@ -5,7 +5,7 @@ import { gsap, Back } from "gsap";
 import { IntroContainer } from "../styles/Styled.IntroContainer";
 import { SpanLetters } from "../styles/Styled.SpanLetters";
 import ThirdTile from "../components/ThirdTile";
-
+import {AllStats} from "./AllStats";
 import {
   FirstTile,
   SecondTile,
@@ -88,6 +88,7 @@ export default function Intro() {
 
   return (
     <IntroContainer>
+      <AllStats />
       <PlayInfo>Click P to start game.</PlayInfo>
       <CardContainer ref={parentRef}>
         <Row ref={rotationDiv}>

@@ -37,7 +37,7 @@ const GameTile = (props) => {
       setDivSide("front");
     }
   };
-
+  // add card symbol to compare function
   useEffect(() => {
     if (divSide === "back") {
       const cardSymbol = backRef.current.children[0].dataset.icon;
@@ -45,8 +45,8 @@ const GameTile = (props) => {
     }
   }, [divSide]);
 
+  
   // if card is not matching
-
   useEffect(() => {
     let delay;
     if (divSide === "back" && isClickable) {
@@ -95,7 +95,7 @@ const GameTile = (props) => {
   }, [divSide]);
   return (
     <>
-      <CardWrapper ref={cardWrapperRef} isClickable={isClickable}>
+      <CardWrapper ref={cardWrapperRef} isClickable={isClickable} >
         <div className="card" ref={cardRef} onClick={changeSide}>
           <div
             className="cardFace front"
