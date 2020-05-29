@@ -22,7 +22,7 @@ const Seconds = styled.span`
   text-shadow: 2px 2px 2px black;
 `;
 const Timer = (props) => {
-  const [sec, setSec] = useState(5);
+  const [sec, setSec] = useState(4);
   const [isActive, setIsActive] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
   const secRef = useRef(null);
@@ -50,7 +50,7 @@ const Timer = (props) => {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
       }, 1000);
-    } else if (!isActive && sec !== 5) {
+    } else if (!isActive && sec !== 4) {
       clearInterval(interval);
     }
     else if(sec===0){
@@ -65,6 +65,7 @@ const Timer = (props) => {
         <StyledH2>START</StyledH2>
       ) : (
         <StyledH2>
+          {sec <= 2 ? `Good luck! Happy flipping !` : ''}
           <Seconds ref={secRef}>
             {sec}s
           </Seconds>

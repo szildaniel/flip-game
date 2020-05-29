@@ -10,7 +10,6 @@ font-weight: 600;
 `
 
 const CurrentGameStats = (props) => {
-  console.log(props.isPaused)
   return (
     <GameStats>
       {props.isPaused ? (

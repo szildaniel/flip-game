@@ -101,7 +101,7 @@ const GameTile = (props) => {
             className="cardFace front"
             data-index={props.index}
             ref={frontRef}
-          ></div>
+  >{props.mySymbol.value}</div>
           <div className="cardFace back" ref={backRef}>
             <FontAwesomeIcon
               size="6x"

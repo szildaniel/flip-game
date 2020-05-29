@@ -26,7 +26,7 @@ const ThirdTile = (props) => {
   const backRef = useRef(null);
 
   const isInitialMount = useRef(true);
-
+  const { lastScore } = props;
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -62,7 +62,15 @@ const ThirdTile = (props) => {
       <CardWrapper ref={cardWrapperRef}>
         <div className="card" ref={cardRef} onClick={changeSide}>
           <div className="cardFace front--info" ref={frontRef}>
-            <SpanLetters>I</SpanLetters>
+            <SpanLetters>
+              {lastScore && lastScore === "win" ? (
+                <span>N</span>
+              ) : lastScore && lastScore === "lose" ? (
+                <span>S</span>
+              ) : (
+                "I"
+              )}
+            </SpanLetters>
           </div>
           <div className="cardFace back--info" ref={backRef}>
             <Instructions>Instructions</Instructions>

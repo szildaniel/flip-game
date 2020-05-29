@@ -16,12 +16,12 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "cookie": "^0.4.1",
     "gsap": "^3.2.6",
-    "js-cookie": "^2.2.1",
     "next": "^9.3.6",
+    "next-cookies": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
     "styled-components": "^5.1.0"
   }
 }

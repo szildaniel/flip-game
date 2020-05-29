@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { GlobalStyle } from "./index";
+
 import { GameGrid } from "../styles/Styled.GameGrid";
 import GameTile from "../components/GameTile";
 import CurrentGameStats from "../components/CurrentGameStats";
@@ -8,7 +8,7 @@ import { ProgressBar } from "../components/ProgressBar";
 import { useRandomSymbols } from "../helpers/symbol";
 import { useGameLogic } from "../helpers/gameLogic";
 
-export default function Game() {
+export default function Game({ initialRememberValue }) {
   const gridRef = useRef(null);
 
   const {
@@ -20,7 +20,7 @@ export default function Game() {
     isPaused,
     isActive,
     toggleGame,
-    addUncoveredCardToCompare
+    addUncoveredCardToCompare,
   } = useGameLogic(gridRef);
 
   const mySymbols = useRandomSymbols();
@@ -36,9 +36,7 @@ export default function Game() {
 
   return (
     <div>
-      <GlobalStyle />
-      <ProgressBar isPaused={isPaused} />
-
+      <ProgressBar isPaused={isPaused} cardsMatching={cardsMatching} />
       {isActive ? (
         <CurrentGameStats
           cardMatching={cardsMatching}
@@ -49,10 +47,7 @@ export default function Game() {
         <Timer toggleGame={toggleGame} />
       )}
 
-      <GameGrid
-        ref={gridRef}
-        onClick={countUncoveredCards}
-      >
+      <GameGrid ref={gridRef} onClick={countUncoveredCards}>
         {gameTiles.map((x, i) => (
           <GameTile
             key={i}
@@ -69,3 +64,4 @@ export default function Game() {
     </div>
   );
 }
+

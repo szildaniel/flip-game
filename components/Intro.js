@@ -5,7 +5,8 @@ import { gsap, Back } from "gsap";
 import { IntroContainer } from "../styles/Styled.IntroContainer";
 import { SpanLetters } from "../styles/Styled.SpanLetters";
 import ThirdTile from "../components/ThirdTile";
-import {AllStats} from "./AllStats";
+import { seperateCookies } from '../helpers/seperateCookies';
+
 import {
   FirstTile,
   SecondTile,
@@ -34,11 +35,29 @@ export default function Intro() {
   let [divSide, setDivSide] = useState("front");
   let [fourthTileSide, setFourthTileSide] = useState("front");
 
+  const [bestWinTime, setBestWinTime] = useState();
+  const [lastScore, setLastScore] = useState();
+
+  const [wins, setWins] = useState();
+  const [lost, setLost] = useState();
+  const [abandoned, setAbandoned] = useState();
+
   const parentRef = useRef(null);
   const backRef = useRef(null);
   const frontRef = useRef(null);
   const rotationDiv = useRef(null);
   const fourthTileRef = useRef(null);
+
+  // handling cookies
+  useEffect(() => {
+    const cookiesObject = seperateCookies();
+    if (cookiesObject.bestTime) setBestWinTime(cookiesObject.bestTime);
+    if (cookiesObject.lastScore) setLastScore(cookiesObject.lastScore);
+    if (cookiesObject.win) setWins(cookiesObject.win);
+    if (cookiesObject.lose) setLost(cookiesObject.lose);
+    if (cookiesObject.abandoned) setAbandoned(cookiesObject.abandoned);
+
+  }, []);
 
   const changeSide = () => {
     if (divSide === "front") {
@@ -67,56 +86,70 @@ export default function Intro() {
     });
   });
 
-  useEffect( () => {
-    if(fourthTileSide==="front"){
-      gsap.to(fourthTileRef.current, .3, {autoAlpha:0 })
+  useEffect(() => {
+    if (fourthTileSide === "front") {
+      gsap.to(fourthTileRef.current, 0.3, { autoAlpha: 0 });
+    } else if (fourthTileSide === "back") {
+      gsap.to(fourthTileRef.current, 0.3, { autoAlpha: 1 });
     }
-    else if(fourthTileSide === "back"){
-      gsap.to(fourthTileRef.current, .3, {autoAlpha: 1})
+  }, [fourthTileSide]);
 
-    }
-  }, [fourthTileSide])
-
-  const animateFourthTile = () => { 
-    if(fourthTileSide === "front"){
+  const animateFourthTile = () => {
+    if (fourthTileSide === "front") {
       setFourthTileSide("back");
-    }
-    else if(fourthTileSide === "back"){
+    } else if (fourthTileSide === "back") {
       setFourthTileSide("front");
     }
-  }
+  };
 
   return (
     <IntroContainer>
-      <AllStats />
-      <PlayInfo>Click P to start game.</PlayInfo>
+      <PlayInfo>Click {lastScore && lastScore==="win" ? <span>!</span>
+                : lastScore && lastScore==="lose" ? <span>E</span>
+                 : "P"} to start game.</PlayInfo>
       <CardContainer ref={parentRef}>
         <Row ref={rotationDiv}>
           <div className="introCard front" ref={frontRef}>
             <FirstTile onClick={changeSide}>
-              <SpanLetters>F</SpanLetters>
+              <SpanLetters>
+                {lastScore && lastScore==="win" ? <span>W</span>
+                : lastScore && lastScore==="lose" ? <span>L</span>
+                 : "F"}
+                </SpanLetters>
             </FirstTile>
             <SecondTile onClick={changeSide}>
-              <SpanLetters>L</SpanLetters>
+              <SpanLetters>
+              {lastScore && lastScore==="win" ? <span>I</span>
+                : lastScore && lastScore==="lose" ? <span>O</span>
+                 : "L"}
+                </SpanLetters>
             </SecondTile>
           </div>
           <div className="introCard back" ref={backRef} onClick={changeSide}>
             <FlippedDiv>
-              <p>RESULTS: 0 <sup>won</sup>, 0 <sup>lost</sup> 0 <sup>abandoned</sup> </p>
-              <p>1. Best Time: --</p>
-              <p>2. Last result: win</p>
+              <p>
+                Results: {wins ? wins : 0}<sup>won</sup>
+                 {lost ? lost : 0}<sup>lost</sup>
+                {abandoned ? abandoned : 0 }<sup>abandoned</sup>
+              </p>
+              <p>1. Best Time: {bestWinTime ? `${bestWinTime} s` : "--"} </p>
+              <p>2. Last result: {lastScore ? lastScore.toUpperCase() : "--"}</p>
             </FlippedDiv>
           </div>
         </Row>
       </CardContainer>
 
       <Row className="second-row">
-        <ThirdTile animateFourthTile={animateFourthTile} />
+        <ThirdTile animateFourthTile={animateFourthTile} lastScore={lastScore}/>
 
         <Link href="/game">
           <a>
             <FourthTile ref={fourthTileRef}>
-              <SpanLetters>P</SpanLetters>
+              <SpanLetters>
+              {lastScore && lastScore==="win" ? <span>!</span>
+                : lastScore && lastScore==="lose" ? <span>E</span>
+                 : "P"}
+              </SpanLetters>
             </FourthTile>
           </a>
         </Link>
