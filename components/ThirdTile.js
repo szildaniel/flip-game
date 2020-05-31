@@ -74,8 +74,7 @@ const ThirdTile = (props) => {
           </div>
           <div className="cardFace back--info" ref={backRef}>
             <Instructions>Instructions</Instructions>
-            <p>Press [p] to pouse the game.</p>
-            <p>Press [esc] to exit.</p>
+            <p>Press [p] to pause the game, [esc] to exit. </p>
             <p>
               Flip is a time memory game. Click the red cards to see what symbol
               they uncover and try to find the matching symbol underneath the

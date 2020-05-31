@@ -2,13 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { gsap, Back } from "gsap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CardWrapper } from '../styles/Styled.Tiles';
 
-const CardWrapper = styled.div`
-  width: 100%;
-  height: 200px;
-  cursor: ${(props) => (props.isClickable ? "pointer" : "arrow")};
-  position: relative;
-`;
 
 const GameTile = (props) => {
   let [divSide, setDivSide] = useState("front");
@@ -54,6 +49,8 @@ const GameTile = (props) => {
         setDivSide("front");
       }, 400);
     }
+
+    () => clearTimeout(delay);
   }, [props.cardNotMatching]);
 
   // if card is matching
@@ -100,8 +97,7 @@ const GameTile = (props) => {
           <div
             className="cardFace front"
             data-index={props.index}
-            ref={frontRef}
-  >{props.mySymbol.value}</div>
+            ref={frontRef}></div>
           <div className="cardFace back" ref={backRef}>
             <FontAwesomeIcon
               size="6x"

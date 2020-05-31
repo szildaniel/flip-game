@@ -1,35 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import styled from "styled-components";
 import { gsap, Back } from "gsap";
-import { IntroContainer } from "../styles/Styled.IntroContainer";
 import { SpanLetters } from "../styles/Styled.SpanLetters";
 import ThirdTile from "../components/ThirdTile";
-import { seperateCookies } from '../helpers/seperateCookies';
-
+import { seperateCookies } from "../helpers/seperateCookies";
 import {
   FirstTile,
   SecondTile,
   FourthTile,
   FlippedDiv,
 } from "../styles/Styled.Tiles";
-
-const CardContainer = styled.div`
-  position: relative;
-  width: 500px;
-  height: 250px;
-  margin-bottom: 20px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const PlayInfo = styled.span`
-  display: block;
-  color: #656363;
-`;
+import {
+  IntroContainer,
+  CardContainer,
+  Row,
+  PlayInfo,
+} from "../styles/Styled.Intro";
 
 export default function Intro() {
   let [divSide, setDivSide] = useState("front");
@@ -56,7 +42,6 @@ export default function Intro() {
     if (cookiesObject.win) setWins(cookiesObject.win);
     if (cookiesObject.lose) setLost(cookiesObject.lose);
     if (cookiesObject.abandoned) setAbandoned(cookiesObject.abandoned);
-
   }, []);
 
   const changeSide = () => {
@@ -104,51 +89,79 @@ export default function Intro() {
 
   return (
     <IntroContainer>
-      <PlayInfo>Click {lastScore && lastScore==="win" ? <span>!</span>
-                : lastScore && lastScore==="lose" ? <span>E</span>
-                 : "P"} to start game.</PlayInfo>
+      <PlayInfo>
+        Click{" "}
+        {lastScore && lastScore === "win" ? (
+          <span>!</span>
+        ) : lastScore && lastScore === "lose" ? (
+          <span>E</span>
+        ) : (
+          "P"
+        )}{" "}
+        to start game.
+      </PlayInfo>
       <CardContainer ref={parentRef}>
         <Row ref={rotationDiv}>
           <div className="introCard front" ref={frontRef}>
             <FirstTile onClick={changeSide}>
               <SpanLetters>
-                {lastScore && lastScore==="win" ? <span>W</span>
-                : lastScore && lastScore==="lose" ? <span>L</span>
-                 : "F"}
-                </SpanLetters>
+                {lastScore && lastScore === "win" ? (
+                  <span>W</span>
+                ) : lastScore && lastScore === "lose" ? (
+                  <span>L</span>
+                ) : (
+                  "F"
+                )}
+              </SpanLetters>
             </FirstTile>
             <SecondTile onClick={changeSide}>
               <SpanLetters>
-              {lastScore && lastScore==="win" ? <span>I</span>
-                : lastScore && lastScore==="lose" ? <span>O</span>
-                 : "L"}
-                </SpanLetters>
+                {lastScore && lastScore === "win" ? (
+                  <span>I</span>
+                ) : lastScore && lastScore === "lose" ? (
+                  <span>O</span>
+                ) : (
+                  "L"
+                )}
+              </SpanLetters>
             </SecondTile>
           </div>
           <div className="introCard back" ref={backRef} onClick={changeSide}>
             <FlippedDiv>
               <p>
-                Results: {wins ? wins : 0}<sup>won</sup>
-                 {lost ? lost : 0}<sup>lost</sup>
-                {abandoned ? abandoned : 0 }<sup>abandoned</sup>
+                Results: {wins ? wins : 0}
+                <sup>won</sup>
+                {lost ? lost : 0}
+                <sup>lost</sup>
+                {abandoned ? abandoned : 0}
+                <sup>abandoned</sup>
               </p>
               <p>1. Best Time: {bestWinTime ? `${bestWinTime} s` : "--"} </p>
-              <p>2. Last result: {lastScore ? lastScore.toUpperCase() : "--"}</p>
+              <p>
+                2. Last result: {lastScore ? lastScore.toUpperCase() : "--"}
+              </p>
             </FlippedDiv>
           </div>
         </Row>
       </CardContainer>
 
       <Row className="second-row">
-        <ThirdTile animateFourthTile={animateFourthTile} lastScore={lastScore}/>
+        <ThirdTile
+          animateFourthTile={animateFourthTile}
+          lastScore={lastScore}
+        />
 
         <Link href="/game">
           <a>
             <FourthTile ref={fourthTileRef}>
               <SpanLetters>
-              {lastScore && lastScore==="win" ? <span>!</span>
-                : lastScore && lastScore==="lose" ? <span>E</span>
-                 : "P"}
+                {lastScore && lastScore === "win" ? (
+                  <span>!</span>
+                ) : lastScore && lastScore === "lose" ? (
+                  <span>E</span>
+                ) : (
+                  "P"
+                )}
               </SpanLetters>
             </FourthTile>
           </a>

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
+import { device } from "../styles/breakpoints";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -19,9 +20,17 @@ const GlobalStyle = createGlobalStyle`
     
   }
   p{
-    margin: 10px 0;
+    font-size: 0.85em;
+    margin: 8px 0;
+    @media ${device.laptop}{
+      font-size: 1em;
+      margin: 10px 0;
+    }
     &:first-of-type{
-      font-size:1.2rem;
+      font-size: 1rem;
+      @media ${device.laptop}{
+        font-size:1.2rem;
+      }
     }
   }
   sup{
@@ -45,13 +54,21 @@ const GlobalStyle = createGlobalStyle`
   overflow: hidden;
   color: white;
   width: 100%;
-  height: 200px;
+  height: 150px;
   display:flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
   box-sizing: border-box;
-
+  .fa-6x{
+    font-size: 3.5em;
+  }
+  @media ${device.laptop}{
+    height: 200px;
+    .fa-6x{
+    font-size: 6em;
+  }
+  }
   &.front{
     background: #A3333D;
   }
@@ -60,28 +77,42 @@ const GlobalStyle = createGlobalStyle`
     background: #2f6e2a;
   }
   &.front--info {
-    height: 250px;
-    width: 250px;
+    height: 175px;
+    width: 175px;
     border-top: 2px solid black;
     border-right: 2px solid black;
     background: #291F1E; 
     transform: rotateY(-180deg);
-    margin:10px;
+    margin:5px;
+    @media ${device.laptop}{
+      height: 250px;
+      width: 250px;
+      margin: 10px;
     }
+  }
   &.back--info {
-    width: 520px;
-    height: 250px;
+    width: 360px;
+    height: 175px;
     background: #432624;
     border: 2px solid black;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 2px 12px;
+    margin-top: 5px;
+    @media ${device.laptop}{
+      width: 520px;
+      height: 250px;
+      margin-top: 10px;
     transform: translateX(-10px);
-    margin-top: 10px;
+
+    }
     p{
-      padding: 0.3rem 0;
+      padding: 0.2rem 0;
       margin: 0;
+    @media ${device.laptop}{
+      padding: 0.3rem 0;
+    }
     }
   }
   &.front--play {
@@ -95,11 +126,19 @@ const GlobalStyle = createGlobalStyle`
   }
 }
 .second-row{
-  height: 250px;
-  width: 520px;
+  height: 175px;
+  width: 360px;
   box-sizing: border-box;
+  @media ${device.laptop}{
+      width: 520px;
+      height: 250px;
+    }
   & a{
+    width: 180px;
+    @media ${device.laptop}{
     width: 250px;
+
+    }
   }
 }
 `;
