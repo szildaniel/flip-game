@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRandomIntInclusive } from "../helpers/random";
+import { getRandomIntInclusive } from "../random";
 
 const allSymbols = [
   { id: 1, value: "bomb" },

@@ -1,30 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import styled from "styled-components";
 import { gsap, Back } from "gsap";
+import { StyledTimer, Seconds} from '../styles/Styled.Timer';
 
-const StyledH2 = styled.h2`
-  text-align: center;
-  font-family: 'Indie Flower', cursive;
-  color: #291F1E;
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const Seconds = styled.span`
-  font-family: 'Indie Flower', cursive;
-  display: block;
-  font-size: 5rem;
-  font-weight: bolder;
-  text-align: center;
-  color: #A3333D;
-  text-shadow: 2px 2px 2px black;
-`;
 const Timer = (props) => {
   const [sec, setSec] = useState(4);
   const [isActive, setIsActive] = useState(true);
-  const [gameStarted, setGameStarted] = useState(false);
   const secRef = useRef(null);
 
   useEffect(() => {
@@ -52,25 +32,19 @@ const Timer = (props) => {
       }, 1000);
     } else if (!isActive && sec !== 4) {
       clearInterval(interval);
-    }
-    else if(sec===0){
-        setGameStarted(true);
-        props.toggleGame();
+    } else if (sec === 0) {
+      props.toggleGame();
     }
     return () => clearInterval(interval);
   }, [isActive, sec]);
   return (
     <>
-      {gameStarted ? (
-        <StyledH2>START</StyledH2>
-      ) : (
-        <StyledH2>
-          {sec <= 2 ? `Good luck! Happy flipping !` : ''}
-          <Seconds ref={secRef}>
-            {sec}s
-          </Seconds>
-        </StyledH2>
-      )} 
+      <StyledTimer>
+        {sec <= 2 ? <h1>Good luck! Happy flipping !</h1> : ""}
+        <h2>
+          <Seconds ref={secRef}>{sec}s</Seconds>
+        </h2>
+      </StyledTimer>
     </>
   );
 };

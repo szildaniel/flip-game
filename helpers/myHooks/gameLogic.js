@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { gsap } from "gsap";
-import { handleKeyboard } from "../helpers/keyboard";
+import { handleKeyboard } from "../keyboard";
 import Router from "next/router";
 
 export function useGameLogic(gridRef) {

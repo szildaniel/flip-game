@@ -5,10 +5,8 @@ export const GameStats = styled.div`
 display: flex;
 justify-content: center;
 align-items:center;
-padding: 0.5rem 1rem;
-  @media ${device.laptop}{
-    padding: 2rem 1rem;
-  }
+padding: 0 1rem;
+ 
 div{
     padding: 20px 10px;
 }

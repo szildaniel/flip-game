@@ -5,10 +5,10 @@ import GameTile from "../components/GameTile";
 import CurrentGameStats from "../components/CurrentGameStats";
 import Timer from "../components/Timer";
 import { ProgressBar } from "../components/ProgressBar";
-import { useRandomSymbols } from "../helpers/symbol";
-import { useGameLogic } from "../helpers/gameLogic";
+import { useRandomSymbols } from "../helpers/myHooks/symbol";
+import { useGameLogic } from "../helpers/myHooks/gameLogic";
 
-export default function Game({ initialRememberValue }) {
+export default function Game() {
   const gridRef = useRef(null);
 
   const {
