@@ -54,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
   overflow: hidden;
   color: white;
   width: 100%;
-  height: 150px;
+  height: 125px;
   display:flex;
   justify-content: center;
   align-items: center;
