@@ -68,7 +68,7 @@ export const FlippedDiv = styled.div`
 
 export const CardWrapper = styled.div`
   width: 100%;
-  height: 125px;
+  height: 115px;
   cursor: ${(props) => (props.isClickable ? "pointer" : "arrow")};
   position: relative;
   @media ${device.laptop}{

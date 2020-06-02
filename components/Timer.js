@@ -40,9 +40,9 @@ const Timer = (props) => {
   return (
     <>
       <StyledTimer>
-        {sec <= 2 ? <h1>Good luck! Happy flipping !</h1> : ""}
+        {sec <= 2 ? <h1>Good luck !</h1> : ""}
         <h2>
-          <Seconds ref={secRef}>{sec}s</Seconds>
+          <Seconds ref={secRef}>{sec}</Seconds>
         </h2>
       </StyledTimer>
     </>

@@ -34,9 +34,14 @@ const GameTile = (props) => {
   };
   // add card symbol to compare function
   useEffect(() => {
+    const userUncoverSameCard = props.cards[0] && divSide==="front";
+
     if (divSide === "back") {
       const cardSymbol = backRef.current.children[0].dataset.icon;
-      props.addCard(cardSymbol);
+      props.addCard(cardSymbol); 
+    }
+    else if(userUncoverSameCard){
+      props.resetCards();
     }
   }, [divSide]);
 

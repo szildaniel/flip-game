@@ -21,6 +21,7 @@ export default function Game() {
     isActive,
     toggleGame,
     addUncoveredCardToCompare,
+    resetCards
   } = useGameLogic(gridRef);
 
   const mySymbols = useRandomSymbols();
@@ -51,6 +52,7 @@ export default function Game() {
         {gameTiles.map((x, i) => (
           <GameTile
             key={i}
+            index={i}
             mySymbol={mySymbols[i]}
             addCard={addUncoveredCardToCompare}
             setCardsToCompare={setCardsToCompare}
@@ -58,6 +60,7 @@ export default function Game() {
             cardMatching={cardsMatching}
             cardNotMatching={cardsNotMatching}
             isPaused={isPaused}
+            resetCards={resetCards}
           />
         ))}
       </GameGrid>

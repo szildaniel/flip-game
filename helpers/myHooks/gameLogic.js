@@ -55,7 +55,7 @@ export function useGameLogic(gridRef) {
     }
   };
 
-  const addUncoveredCardToCompare = (card) => {
+  const addUncoveredCardToCompare = (card) => { 
     setCardsToCompare([...cardsToCompare, card]);
   };
   
@@ -132,6 +132,6 @@ export function useGameLogic(gridRef) {
     isActive,
     toggleGame,
     addUncoveredCardToCompare,
-    abandoned,
+    resetCards
   };
 }
