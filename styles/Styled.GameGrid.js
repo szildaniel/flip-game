@@ -13,6 +13,6 @@ export const GameGrid = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr;
   @media ${device.laptop}{
     width: 60vw;
-    height: auto;
+    height: 80vh;
   }
 `;
