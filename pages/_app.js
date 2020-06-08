@@ -20,14 +20,14 @@ const GlobalStyle = createGlobalStyle`
     
   }
   p{
-    font-size: 0.85em;
+    font-size: 0.8em;
     margin: 8px 0;
     @media ${device.laptop}{
       font-size: 1em;
       margin: 10px 0;
     }
     &:first-of-type{
-      font-size: 1rem;
+      font-size: .95rem;
       @media ${device.laptop}{
         font-size:1.2rem;
       }
@@ -108,7 +108,7 @@ const GlobalStyle = createGlobalStyle`
 
     }
     p{
-      padding: 0.2rem 0;
+      padding: 0.15rem 0;
       margin: 0;
     @media ${device.laptop}{
       padding: 0.3rem 0;

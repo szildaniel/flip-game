@@ -3,7 +3,7 @@ import { device } from "../styles/breakpoints";
 
 export const GameGrid = styled.div`
   width: 100vw;
-  height: auto;
+  height: 55vh;
   position: absolute;
   top: 50%;
   left: 50%;
