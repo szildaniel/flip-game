@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
-import Game from '../pages/game';
-import GameTile from '../components/GameTile';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import Game from '../pages/game';
+import GameTile from '../components/GameTile';
 
 configure({ adapter: new Adapter() });
 

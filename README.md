@@ -49,9 +49,15 @@ Start local server with next-js
 npm start
 ```
 
-
 Your local server should be running on http://localhost:3000/
 
+### Running the tests
+
+To start all tests you have to use command
+
+```
+npm  test
+```
 
 ## Author
 
