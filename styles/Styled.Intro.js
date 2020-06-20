@@ -13,7 +13,7 @@ export const IntroContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media ${device.laptop} {
+  @media ${device.laptopL} {
     width: 70vw;
   }
 `;
@@ -23,7 +23,7 @@ export const CardContainer = styled.div`
   width: 350px;
   height: 175px;
   margin-bottom: 10px;
-  @media ${device.laptop} {
+  @media ${device.laptopL} {
     width: 500px;
     height: 250px;
     margin-bottom: 20px;

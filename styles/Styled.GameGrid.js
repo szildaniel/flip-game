@@ -11,7 +11,7 @@ export const GameGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  @media ${device.laptop}{
+  @media ${device.laptopL}{
     width: 60vw;
     height: 80vh;
   }

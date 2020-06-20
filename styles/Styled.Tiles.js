@@ -11,7 +11,7 @@ const Tile = styled.div`
   cursor: pointer;
   box-sizing: border-box;
   color: white;
-  @media ${device.laptop} {
+  @media ${device.laptopL} {
     width: 250px;
     height: 250px;
     margin: 10px;
@@ -52,7 +52,7 @@ export const FlippedDiv = styled.div`
   box-sizing: border-box;
   cursor: pointer;
   background: #c4d6b0;
-  @media ${device.laptop} {
+  @media ${device.laptopL} {
     width: 520px;
     height: 250px;
     margin: 10px;
@@ -71,7 +71,7 @@ export const CardWrapper = styled.div`
   height: 115px;
   cursor: ${(props) => (props.isClickable ? "pointer" : "arrow")};
   position: relative;
-  @media ${device.laptop}{
+  @media ${device.laptopL}{
     height: 200px;
   }
 `;

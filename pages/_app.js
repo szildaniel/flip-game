@@ -22,13 +22,13 @@ const GlobalStyle = createGlobalStyle`
   p{
     font-size: 0.8em;
     margin: 8px 0;
-    @media ${device.laptop}{
+    @media ${device.laptopL}{
       font-size: 1em;
       margin: 10px 0;
     }
     &:first-of-type{
       font-size: .95rem;
-      @media ${device.laptop}{
+      @media ${device.laptopL}{
         font-size:1.2rem;
       }
     }
@@ -63,7 +63,7 @@ const GlobalStyle = createGlobalStyle`
   .fa-6x{
     font-size: 3.5em;
   }
-  @media ${device.laptop}{
+  @media ${device.laptopL}{
     height: 200px;
     .fa-6x{
     font-size: 6em;
@@ -84,7 +84,7 @@ const GlobalStyle = createGlobalStyle`
     background: #291F1E; 
     transform: rotateY(-180deg);
     margin:5px;
-    @media ${device.laptop}{
+    @media ${device.laptopL}{
       height: 250px;
       width: 250px;
       margin: 10px;
@@ -100,7 +100,7 @@ const GlobalStyle = createGlobalStyle`
     align-items: flex-start;
     padding: 2px 12px;
     margin-top: 5px;
-    @media ${device.laptop}{
+    @media ${device.laptopL}{
       width: 520px;
       height: 250px;
       margin-top: 10px;
@@ -110,7 +110,7 @@ const GlobalStyle = createGlobalStyle`
     p{
       padding: 0.15rem 0;
       margin: 0;
-    @media ${device.laptop}{
+    @media ${device.laptopL}{
       padding: 0.3rem 0;
     }
     }
@@ -129,13 +129,13 @@ const GlobalStyle = createGlobalStyle`
   height: 175px;
   width: 360px;
   box-sizing: border-box;
-  @media ${device.laptop}{
+  @media ${device.laptopL}{
       width: 520px;
       height: 250px;
     }
   & a{
     width: 180px;
-    @media ${device.laptop}{
+    @media ${device.laptopL}{
     width: 250px;
 
     }
